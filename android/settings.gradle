@@ -1,0 +1,3 @@
+rootProject.name = 'pp_jsconf'
+
+include ':app'
