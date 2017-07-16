@@ -24,19 +24,16 @@ const styles = {
     alignSelf: 'center',
     backgroundColor: '#00C5CD',
     borderRadius: 3,
-    marginLeft: 25,
-    marginRight: 25,
-    shadowColor: '#79CDCD',
-    shadowOffset: { width: 1, height: 1 },
-    shadowRadius: 1,
-    shadowOpacity: 0.5
+    paddingLeft: 15,
+    paddingRight: 15,
+    margin: 20,
   },
   textStyle: {
     alignSelf: 'center',
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingRight: 15,
-    paddingLeft: 15
+    paddingTop: 5,
+    paddingBottom: 5,
+    paddingRight: 10,
+    paddingLeft: 10
   }
 };
 export default Button;

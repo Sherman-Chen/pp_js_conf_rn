@@ -4,7 +4,7 @@ const yelp = require('yelp-fusion');
 const clientId = '6diInag_AaJ5DW953SH5sQ';
 const clientSecret = 'tKCbvczdQet4l1mFNCJTXpljDpN5SAj4bfseg0hjLTwNnq0bFJJcTVr8Gj5CzLCI';
 
-export default const service = {
+const service = {
     yelpSearch(query, location) {
         return yelp.accessToken(clientId, clientSecret).then(response => {
           const client = yelp.client(response.jsonBody.access_token);
@@ -25,3 +25,5 @@ export default const service = {
         });
     }
 }
+
+export default service;

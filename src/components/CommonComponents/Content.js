@@ -9,6 +9,7 @@ const Content = ({ size, color, weight, children, lines }) => {
     textShadowColor: '#79CDCD',
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 5,
+    textAlign: 'center',
     color
   };
   return (

@@ -1,13 +1,7 @@
 import Card from './Card';
-import CardSection from './CardSection';
-import Clickable from './Clickable';
-import ClickableDetail from './ClickableDetail';
-import Total from './Total';
+import ImageWrapper from './ImageWrapper';
 
 export {
   Card,
-  CardSection,
-  Clickable,
-  ClickableDetail,
-  Total
+  ImageWrapper
 };

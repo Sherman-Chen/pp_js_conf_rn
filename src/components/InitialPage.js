@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import { View, TextInput, Dimensions } from 'react-native';
-import { CardSection } from './ModalComponents';
 import { Button, Content } from './CommonComponents';
-// import yelpSearch from '../../../utils/service';
-// import { Footer, Policy } from './DescText';
-
 
 export default class InitialPage extends Component {
 
@@ -15,16 +11,18 @@ export default class InitialPage extends Component {
    this.state = {
      visible: false,
      loaded: false,
-     id: '',
-     password: ''
+     food: '',
+     place: ''
    };
   }
 
    render() {
+
      const {
        container,
        textBox
      } = styles;
+
   return (
   <View style={container}>
       <Content weight='500' size={35} color='white'> y-Box </Content>
@@ -33,7 +31,7 @@ export default class InitialPage extends Component {
       </Content>
       <TextInput
         style={textBox}
-        onChangeText={(id) => this.setState({ id })}
+        onChangeText={(food) => this.setState({ food })}
         placeholder='What Food do you want?'
         placeholderTextColor="#008080"
         returnKeyType='done'
@@ -43,7 +41,7 @@ export default class InitialPage extends Component {
       />
       <TextInput
         style={textBox}
-        onChangeText={(password) => this.setState({ password })}
+        onChangeText={(place) => this.setState({ place })}
         placeholder='Where do you want it?'
         placeholderTextColor="#008080"
         returnKeyType='done'
@@ -51,11 +49,14 @@ export default class InitialPage extends Component {
         clearButtonMode='while-editing'
         value={this.state.password}
       />
-      <CardSection>
-      <Button onPress={() => {
-        // console.log(yelpSearch);
-       }}> Search </Button>
-      </CardSection>
+        <Button onPress={() => {
+          Actions.card({
+            food: this.state.food,
+            place: this.state.place
+          });
+        }}>
+          Search
+        </Button>
   </View>
   );
   }
