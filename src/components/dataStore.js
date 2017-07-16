@@ -1,32 +1,49 @@
-let cart = [];
-let total = 0;
+let visit = [];
+let notVisit = [];
+let counts = {
+  visited: 0,
+  notVisited: 0
+}
 let observers = [];
-const cartData = {
+const listData = {
 
-  addItem: function(item) {
-    item.key = cart.length;
-    cart[cart.length] = item;
-    total = total + Number(item.price).toFixed(2)
+  addVisit(item) {
+    item.key = visit.length;
+    visit[visit.length] = item;
+    counts.visit = visit.length;
     this.notify();
   },
-  getcartData: function() {
-    return cart;
+  addNotVisit(item) {
+    item.key = notVisit.length;
+    notVisit[notVisit.length] = item;
+    counts.notVisit = notVisit.length;
+    this.notify();
+  },
+  getCounts() {
+    return counts;
+  },
+  getVisit() {
+    return visit;
   },
   deleteItem: function(id) {
     // console.log(id);
-    cart = cart.filter(function( obj ) {
+    visit = visit.filter(function( obj ) {
     return obj.key !== id;
-});
+  });
   this.notify();
   },
-  deleteCart: function() {
-    cart = [];
+  getNotVisit() {
+    return notVisit;
+  },
+  resetList() {
+    visit = [];
+    notVisit = [];
     this.notify();
   },
-  subscribe: function(observer) {
+  subscribe(observer) {
     observers[observers.length] = observer;
   },
-  notify: function() {
+  notify() {
     observers.forEach((observer) => {
       // console.log(observer);
     observer();
@@ -34,4 +51,13 @@ const cartData = {
   }
 }
 
-module.exports = cartData;
+module.exports = listData;
+
+
+// deleteItem: function(id) {
+//   // console.log(id);
+//   cart = cart.filter(function( obj ) {
+//   return obj.key !== id;
+// });
+// this.notify();
+// },

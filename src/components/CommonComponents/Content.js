@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
-const Content = ({ size, color, weight, children, lines }) => {
-  const textStyle = {
+const Content = ({ size, color, weight, children, lines, style }) => {
+  const textStyle = [
+    {
     fontSize: size || 10,
     fontWeight: weight,
     fontFamily: 'ChalkboardSE-Bold',
@@ -11,7 +12,9 @@ const Content = ({ size, color, weight, children, lines }) => {
     textShadowRadius: 5,
     textAlign: 'center',
     color
-  };
+  },
+  StyleSheet.create(style)
+];
   return (
     <Text style={textStyle} numberOfLines={lines}>{ children }</Text>
   );

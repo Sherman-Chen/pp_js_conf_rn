@@ -5,41 +5,43 @@ import { ActivityIndicator, View, Dimensions, StyleSheet, Image, Animated, PanRe
 import { Card, ImageWrapper } from './ModalComponents';
 import { Button, Content } from './CommonComponents';
 
-const cart = require('./dataStore');
+const list = require('./dataStore');
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const SWIPE_THRESHOLD = SCREEN_WIDTH * .5;
+const SWIPE_THRESHOLD = SCREEN_WIDTH * .25;
 
 export default class YelpCard extends Component {
 
   constructor(props) {
     super(props);
-    const position = new Animated.ValueXY();
+    const position = new Animated.ValueXY({
+      x: 0,
+      y: 0
+    });
+    const fadeAnim = new Animated.Value(0);
     const panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onPanResponderMove: (event, gesture) => {
-        // console.log(gesture);
         position.setValue({ x: gesture.dx });
       },
       onPanResponderRelease: (event, gesture) => {
-        // console.log(position.x._value)
         if (gesture.dx > SWIPE_THRESHOLD){
           console.log('SWIPE Right');
-          this.forceExitRight();
-          // this.props.swipeRight();
+          this.forceExit('right', this.props.swipeRight);
         } else if(gesture.dx < -SWIPE_THRESHOLD) {
           console.log('Swipe LEft');
-          this.forceExitLeft();
-          this.props.swipeLeft();
+          this.forceExit('left', this.props.swipeLeft);
+
         } else {
           this.resetPosition();
         }
       }
     });
     this.panResponder = panResponder;
+    this.fadeAnim = fadeAnim;
     this.position = position;
    this.state = {
      data: this.props.data,
-     img: this.props.data.image_url,
+     index: 0
    };
 }
 
@@ -49,23 +51,45 @@ export default class YelpCard extends Component {
       }).start();
   }
 
-  forceExitRight() {
-    Animated.timing(this.position, {
-      toValue: { x: SCREEN_WIDTH + 20, y: 0 },
+  swipeNext(direction) {
+    if(direction === 'right') {
+    list.addVisit(this.state.data[this.state.index]);
+  } else {
+    list.addNotVisit(this.state.data[this.state.index]);
+  }
+  if( this.state.index < this.state.data.length - 1) {
+    console.log('This is the index', this.state.visited);
+    this.position.setValue({
+      x: 0,
+      y: 0
+    })
+    this.fadeAnim.setValue(0);
+    Animated.timing(this.fadeAnim, {
+      toValue: 1,
+      duration: 250
+    }).start();
+    this.setState({
+      index: this.state.index + 1
+    })
+  } else {
+    Actions.list();
+  }
+}
+
+  componentWillMount() {
+    Animated.timing(this.fadeAnim, {
+      toValue: 1,
       duration: 250
     }).start();
   }
 
-  forceExitLeft() {
+  forceExit(direction, onSwipe) {
+    const toSwipe = direction === 'right' ? SCREEN_WIDTH + 20 : -SCREEN_WIDTH - 20;
     Animated.timing(this.position, {
-      toValue: { x: -SCREEN_WIDTH - 20, y: 0 },
+      toValue: { x: toSwipe, y: 0 },
       duration: 250
-    }).start();
+    }).start(() => this.swipeNext(direction));
   }
-
-   componentWillMount() {
-      console.log('I am in the card:', this.props)
-   }
 
    getCardStyle() {
      const rotate = this.position.x.interpolate({
@@ -74,7 +98,8 @@ export default class YelpCard extends Component {
      });
      return {
        ...this.position.getLayout(),
-       transform: [{ rotate }]
+       transform: [{ rotate }],
+       opacity: this.fadeAnim
      };
    }
 
@@ -85,7 +110,7 @@ export default class YelpCard extends Component {
          {...this.panResponder.panHandlers}
          >
              <Card>
-                 <ImageWrapper data={this.state.data} />
+                 <ImageWrapper data={this.state.data[this.state.index]} />
                  <Button
                  onPress={() => {
                    this.setState({ visible: !this.state.visible });
@@ -99,7 +124,7 @@ export default class YelpCard extends Component {
 
    render() {
   return (
-    <View style={styles.backgroundStyle}>
+    <Animated.View style={styles.backgroundStyle}>
     <Image
       style={{
       width: Dimensions.get('window').width,
@@ -109,10 +134,10 @@ export default class YelpCard extends Component {
       position: 'absolute',
       opacity: .6
        }}
-      source={{uri: this.state.img}}
+      source={{uri: this.state.data[this.state.index].image_url}}
       />
   {this.renderProduct()}
-  </View>
+  </Animated.View>
   );
   }
 }
@@ -127,5 +152,6 @@ const styles = StyleSheet.create({
       position: 'relative',
       width: Dimensions.get('window').width,
       height: Dimensions.get('window').height,
+      opacity: this.fadeAnim
   }
 });

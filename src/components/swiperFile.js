@@ -22,36 +22,18 @@ export default class Swiper extends Component {
 
   getProduct(food, place) {
     console.log(food, place);
-    axios.post('https://morning-hamlet-88026.herokuapp.com', {
+    axios.post('https://morning-hamlet-88026.herokuapp.com/fakeData', {
    food: food,
    location: place
  })
   .then(response => {
+    console.log(response);
     this.response = response;
     this.setState({
        visible: !this.state.visible,
-       data: response.data
+       data: response.data.slice(1,2)
      });
-     console.log(this.state.data);
-
   });
-  }
-
-  swipeRight() {
-    this.state.data.shift();
-    console.log(this.state.data);
-    this.setState({
-      data: this.state.data
-    })
-  }
-  swipeLeft() {
-    let newData = this.state.data;
-    newData.shift();
-
-    this.setState({
-      data: newData
-    })
-  console.log(this.state.data);
   }
 
    componentWillMount() {
@@ -72,8 +54,8 @@ export default class Swiper extends Component {
            </View>
        );
      } else {
-            console.log('Rendering the yelp card', this.state);
-           return <YelpCard data={this.state.data[0]} swipeRight={this.swipeRight.bind(this)} swipeLeft={this.swipeLeft.bind(this)} />;
+            // console.log('Rendering the yelp card', this.state);
+           return <YelpCard data={this.state.data} />;
      }
    }
 
