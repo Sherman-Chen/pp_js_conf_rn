@@ -3,10 +3,9 @@ let notVisit = [];
 let counts = {
   visited: 0,
   notVisited: 0
-}
+};
 let observers = [];
 const listData = {
-
   addVisit(item) {
     item.key = visit.length;
     visit[visit.length] = item;
@@ -27,10 +26,10 @@ const listData = {
   },
   deleteItem: function(id) {
     // console.log(id);
-    visit = visit.filter(function( obj ) {
-    return obj.key !== id;
-  });
-  this.notify();
+    visit = visit.filter(function(obj) {
+      return obj.key !== id;
+    });
+    this.notify();
   },
   getNotVisit() {
     return notVisit;
@@ -44,15 +43,14 @@ const listData = {
     observers[observers.length] = observer;
   },
   notify() {
-    observers.forEach((observer) => {
+    observers.forEach(observer => {
       // console.log(observer);
-    observer();
-  })
+      observer();
+    });
   }
-}
+};
 
 module.exports = listData;
-
 
 // deleteItem: function(id) {
 //   // console.log(id);

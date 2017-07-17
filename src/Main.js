@@ -3,9 +3,7 @@ import RouterComponent from './Router';
 
 class Main extends Component {
   render() {
-      return (
-         <RouterComponent />
-    );
+    return <RouterComponent />;
   }
 }
 

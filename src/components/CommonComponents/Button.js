@@ -2,20 +2,16 @@ import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import Content from './Content';
 
-const Button = (props) => {
+const Button = props => {
   const { buttonStyle, textStyle } = styles;
   return (
-  <TouchableOpacity onPress={props.onPress} style={buttonStyle}>
-    <View style={textStyle}>
-      <Content
-      size={18}
-      color='#fff'
-      weight='700'
-      >
-      {props.children}
-     </Content>
-    </View>
-  </TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress} style={buttonStyle}>
+      <View style={textStyle}>
+        <Content size={18} color="#fff" weight="700">
+          {props.children}
+        </Content>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -26,7 +22,7 @@ const styles = {
     borderRadius: 3,
     paddingLeft: 15,
     paddingRight: 15,
-    margin: 20,
+    margin: 20
   },
   textStyle: {
     alignSelf: 'center',

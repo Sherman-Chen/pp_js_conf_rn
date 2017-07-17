@@ -4,16 +4,13 @@ import InitialPage from './components/InitialPage';
 import Swiper from './components/swiperFile';
 import List from './components/List';
 
-
-
 const RouterComponent = () =>
-    <Router>
+  <Router>
     <Scene key="root">
-    <Scene key="initial" component={InitialPage} hideNavBar initial />
-    <Scene key="card" component={Swiper} hideNavBar />
-    <Scene key="list" component={List} hideNavBar />
+      <Scene key="initial" component={InitialPage} hideNavBar initial />
+      <Scene key="card" component={Swiper} hideNavBar />
+      <Scene key="list" component={List} hideNavBar />
     </Scene>
-    </Router>
-;
+  </Router>;
 
 export default RouterComponent;
