@@ -17,8 +17,24 @@ Siddharth Malkireddy & Sherman Chen
 
 * it is recommended to use [brew](https://brew.sh/) to install watchman and yarn
 
+### Follow these instructions to clone and set up the project
+* (optional) fork the repo
+* git clone the repo (start branch) and cd into dir
+* npm install && react-native link
+* react-native run-ios to start simulator
+* if at anytime you fall behind during the workshop raise your hand and the instructor will checkout and push a copy of his branch which you can then `git checkout --track origin/<branchname>` (you may have aliased origin as a different name, run `git remote -v` to check)
+
 ### What we will be building today
+* yINDER - an app for finding restaurants with a familiar feeling user interface/experience
 
-![](https://media.giphy.com/media/e3C4pNKkr9rji/giphy.gif)
+![](https://media.giphy.com/media/zPcoc9ytUpx9S/giphy.gif)
 
-### to be continued..
+[full demo here](https://youtu.be/D2sRSuS29Cw)
+
+### Goals for the workshop
+* [ ] Creating reusable components
+* [ ] Learn about animations and how to handle user interaction
+* [ ] Learning how to make http requests to server for data
+* [ ] Learn good development practices & debugging tools
+* [ ] Learn about deployment / building for production if time allows
+* [ ] Have fun
