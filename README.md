@@ -4,13 +4,18 @@ React Native Workshop Application
 Siddharth Malkireddy & Sherman Chen
 
 ### Things you will need
-XCode, Node (6.11.1 LTS rec), react-native-cli, and Watchman -- Follow these [instructions](https://facebook.github.io/react-native/docs/getting-started.html) for setup
+[Xcode 8](https://developer.apple.com/xcode/), [Node (6.11.1 LTS rec)](https://nodejs.org/en/), react-native-cli, and Watchman 
 
-*Select the Build Projects with Native Code option instead of quickstart
+* Optionally install [android studio](https://developer.android.com/studio/index.html), [yarn](https://yarnpkg.com/en/), and create-react-native-app.
 
-*it is recommended to use [NVM](https://github.com/creationix/nvm) to install and manage node versions, please use 6.11.1 LTS for this workshop
+### Tips for setting up React Native and Xcode for iOS development
 
-*it is recommended to use brew to install watchman and yarn
+#### Follow these [instructions](https://facebook.github.io/react-native/docs/getting-started.html) for setup.
+* Select the Build Projects with Native Code option instead of quickstart
+
+* it is recommended to use [NVM](https://github.com/creationix/nvm) to install and manage node versions, please use 6.11.1 LTS for this workshop
+
+* it is recommended to use [brew](https://brew.sh/) to install watchman and yarn
 
 ### What we will be building today
 
