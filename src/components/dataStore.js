@@ -44,18 +44,9 @@ const listData = {
   },
   notify() {
     observers.forEach(observer => {
-      // console.log(observer);
       observer();
     });
   }
 };
 
 module.exports = listData;
-
-// deleteItem: function(id) {
-//   // console.log(id);
-//   cart = cart.filter(function( obj ) {
-//   return obj.key !== id;
-// });
-// this.notify();
-// },
