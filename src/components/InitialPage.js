@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import { View, TextInput, Dimensions } from 'react-native';
 import { Button, Content } from './CommonComponents';

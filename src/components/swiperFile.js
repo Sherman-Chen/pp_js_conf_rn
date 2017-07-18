@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 import YelpCard from './YelpCard';
 
-const cart = require('./dataStore');
-
 export default class Swiper extends Component {
   constructor(props) {
     super(props);
@@ -19,10 +17,6 @@ export default class Swiper extends Component {
       visible: false,
       data: []
     };
-  }
-
-  renderCards() {
-    console.log('I am returning the cards', data);
   }
 
   getProduct(food, place) {
@@ -37,7 +31,7 @@ export default class Swiper extends Component {
         this.response = response;
         this.setState({
           visible: !this.state.visible,
-          data: response.data
+          data: response.data.slice(0, 5)
         });
       });
   }

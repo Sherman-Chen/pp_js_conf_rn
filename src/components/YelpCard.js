@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Actions } from 'react-native-router-flux';
 import {
   ActivityIndicator,
@@ -80,7 +79,7 @@ export default class YelpCard extends Component {
       }).start();
       this.setState({
         index: this.state.index + 1,
-        isFlipped: !this.state.isFlipped
+        isFlipped: true
       });
     } else {
       Actions.list();
@@ -130,7 +129,6 @@ export default class YelpCard extends Component {
 
   renderProduct() {
     return (
-      //  <View onPress={this._flipToggleCard}>
       <Animated.View
         style={this.getCardStyle()}
         {...this.panResponder.panHandlers}
@@ -139,7 +137,6 @@ export default class YelpCard extends Component {
           {this.returnFace()}
         </Card>
       </Animated.View>
-      //  </TouchableOpacity>
     );
   }
 
@@ -152,7 +149,6 @@ export default class YelpCard extends Component {
           <Button
             onPress={() => {
               this.setState({ isFlipped: !this.state.isFlipped });
-              //  Actions.input({type: 'reset'});
             }}
           >
             More Details
@@ -166,7 +162,6 @@ export default class YelpCard extends Component {
           <Button
             onPress={() => {
               this.setState({ isFlipped: !this.state.isFlipped });
-              //  Actions.input({type: 'reset'});
             }}
           >
             Back
